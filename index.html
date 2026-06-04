@@ -90,13 +90,26 @@
       font-size: 0.9rem;
       animation: fadeUp 0.5s ease 0.1s both;
     }
+    .doc-section {
+      margin-bottom: 40px;
+      animation: fadeUp 0.5s ease 0.15s both;
+    }
     .doc-link {
+      display: inline-block;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 16px;
       color: var(--accent);
       text-decoration: none;
       font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.2s;
     }
     .doc-link:hover {
-      text-decoration: underline;
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
     }
 
     /* ── SECTIONS ── */
@@ -574,8 +587,12 @@
   <!-- HEADER -->
   <header class="page-header">
     <h1>🎨 Charte Graphique</h1>
-    <p>Preview des composants en action — <a href="design_system.md" class="doc-link">📄 Documentation complète</a></p>
+    <p>Preview des composants en action</p>
   </header>
+
+  <div class="doc-section">
+    <a href="design_system.md" class="doc-link">📄 design_system.md</a>
+  </div>
 
   <!-- 1. PALETTE -->
   <section class="section">
