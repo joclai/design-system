@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Charte Graphique — Preview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg:          #0f1117;
+      --card:        #1a1d2a;
+      --card2:       #212435;
+      --overlay:     rgba(26, 29, 42, 0.8);
+      --border:      #2a2d40;
+      --border-subtle: rgba(42, 45, 64, 0.6);
+      --text:        #e0e2f0;
+      --muted:       #7a7d90;
+      --placeholder: #5a5d70;
+      --accent:      #6c5ce7;
+      --blue:        #5c8dff;
+      --green:       #00d68f;
+      --orange:      #ffa726;
+      --red:         #ff5252;
+      --pink:        #f050a0;
+      --cyan:        #00d4ff;
+      --teal:        #00b8a0;
+      --indigo:      #4d6bfe;
+      --yellow:      #f5d020;
+      --lime:        #82e000;
+      --purple:      #c061f7;
+      --coral:       #ff6b6b;
+      --radius-sm:   6px;
+      --radius-md:   8px;
+      --radius-lg:   12px;
+      --radius-xl:   16px;
+      --radius-2xl:  24px;
+      --shadow-card:  0 4px 24px rgba(0,0,0,0.3);
+      --shadow-modal: 0 25px 80px rgba(0,0,0,0.5);
+      --transition-fast:   0.15s ease;
+      --transition-normal: 0.2s ease;
+      --transition-slow:   0.3s ease;
+      --grad-indigo-violet: linear-gradient(90deg, #4d6bfe, #6c5ce7);
+      --grad-orange-red:    linear-gradient(90deg, #ffa726, #ff7043);
+      --grad-blue-sky:      linear-gradient(90deg, #5c8dff, #42a5f5);
+      --grad-green:         linear-gradient(90deg, #00d68f, #00e676);
+      --grad-pink-purple:   linear-gradient(90deg, #f050a0, #c061f7);
+      --grad-cyan-teal:     linear-gradient(90deg, #00d4ff, #00b8a0);
+      --grad-lime-green:    linear-gradient(90deg, #82e000, #00d68f);
+      --grad-purple-violet: linear-gradient(90deg, #e040fb, #7c4dff);
+      --grad-coral-orange:  linear-gradient(90deg, #ff6b6b, #ffa726);
+      --grad-yellow-orange: linear-gradient(90deg, #feca57, #ff9f43);
+      --grad-violet-blue:   linear-gradient(135deg, #6c5ce7, #5c8dff);
+      --grad-login-bar:     linear-gradient(90deg, #6c5ce7, #00d68f, #5c8dff);
+      --grad-bg-login:      linear-gradient(135deg, #0f1117, #1a1d2a, #0f1117);
+      --font-ui: 'Inter', -apple-system, system-ui, sans-serif;
+      --font-mono: 'SF Mono', 'Fira Code', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-ui);
+      background: var(--bg);
+      color: var(--text);
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    /* ── HEADER ── */
+    .page-header {
+      margin-bottom: 56px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: var(--grad-violet-blue);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+      animation: fadeUp 0.5s ease both;
+    }
+    .page-header p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      animation: fadeUp 0.5s ease 0.1s both;
+    }
+
+    /* ── SECTIONS ── */
+    .section { margin-bottom: 56px; animation: fadeUp 0.4s ease both; }
+    .section-title {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--placeholder);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── PALETTE ── */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 10px;
+    }
+    .swatch {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      cursor: default;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+    @media (hover: hover) {
+      .swatch:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+    }
+    .swatch-color { height: 56px; }
+    .swatch-info { background: var(--card); padding: 8px 10px; }
+    .swatch-name { font-size: 0.7rem; font-weight: 600; color: var(--text); }
+    .swatch-hex  { font-size: 0.65rem; color: var(--muted); font-family: var(--font-mono); margin-top: 2px; }
+
+    .palette-divider {
+      grid-column: 1 / -1;
+      height: 1px;
+      background: var(--border);
+      margin: 6px 0;
+    }
+
+    /* ── DÉGRADÉS ── */
+    .grad-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 10px;
+    }
+    .grad-swatch {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform var(--transition-fast);
+    }
+    @media (hover: hover) {
+      .grad-swatch:hover { transform: translateY(-3px); }
+    }
+    .grad-color { height: 48px; }
+    .grad-info { background: var(--card); padding: 8px 10px; }
+    .grad-name { font-size: 0.68rem; font-weight: 600; color: var(--text); font-family: var(--font-mono); }
+    .grad-desc  { font-size: 0.65rem; color: var(--muted); margin-top: 2px; }
+
+    /* ── CARTES ── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: border-color var(--transition-normal);
+    }
+    @media (hover: hover) {
+      .card:hover { border-color: rgba(108, 92, 231, 0.35); }
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .card.balance::before     { background: var(--grad-indigo-violet); }
+    .card.consumption::before { background: var(--grad-orange-red); }
+    .card.snapshots::before   { background: var(--grad-blue-sky); }
+    .card.api-status::before  { background: var(--grad-green); }
+    .card.rhythm::before      { background: var(--grad-purple-violet); }
+    .card.live::before        { background: var(--grad-cyan-teal); }
+    .card.highlight::before   { background: var(--grad-pink-purple); }
+    .card.performance::before { background: var(--grad-lime-green); }
+    .card-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .card-value {
+      font-size: 1.8rem;
+      font-weight: 700;
+      line-height: 1.2;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .card-value.accent  { background: var(--grad-indigo-violet); }
+    .card-value.orange  { background: var(--grad-orange-red); }
+    .card-value.blue    { background: var(--grad-blue-sky); }
+    .card-value.green   { background: var(--grad-green); }
+    .card-value.purple  { background: var(--grad-purple-violet); }
+    .card-value.cyan    { background: var(--grad-cyan-teal); }
+    .card-value.pink    { background: var(--grad-pink-purple); }
+    .card-value.lime    { background: var(--grad-lime-green); }
+    .card-sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* ── STAT TILES ── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+    }
+    .stat-tile {
+      position: relative;
+      overflow: hidden;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 16px 20px;
+      transition: border-color var(--transition-normal);
+    }
+    @media (hover: hover) {
+      .stat-tile:hover { border-color: rgba(108,92,231,0.3); }
+    }
+    .stat-tile::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+    }
+    .stat-tile:nth-child(1)::before { background: var(--grad-coral-orange); }
+    .stat-tile:nth-child(2)::before { background: var(--grad-cyan-teal); }
+    .stat-tile:nth-child(3)::before { background: var(--grad-yellow-orange); }
+    .stat-tile:nth-child(4)::before { background: var(--grad-indigo-violet); }
+    .stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 6px; }
+    .stat-value { font-size: 1.4rem; font-weight: 700; color: var(--text); }
+    .stat-sub   { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+
+    /* ── BOUTONS ── */
+    .btn-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .btn {
+      background: var(--card2);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-family: var(--font-ui);
+      transition: all var(--transition-normal);
+      white-space: nowrap;
+    }
+    @media (hover: hover) {
+      .btn:hover {
+        background: var(--grad-violet-blue);
+        border-color: var(--accent);
+        color: #fff;
+      }
+    }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .btn-primary {
+      padding: 10px 24px;
+      background: var(--grad-violet-blue);
+      border: none;
+      border-radius: var(--radius-md);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: all var(--transition-normal);
+    }
+    .btn-primary:hover {
+      background: #7c6cf0;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(108,92,231,0.4);
+    }
+    .filter-btn {
+      padding: 5px 12px;
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--muted);
+      font-size: 0.78rem;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: all var(--transition-fast);
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--grad-violet-blue);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .pag-page {
+      padding: 5px 10px;
+      min-width: 32px;
+      text-align: center;
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--muted);
+      font-size: 0.78rem;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: all var(--transition-fast);
+    }
+    .pag-page.active { background: var(--grad-violet-blue); border-color: var(--accent); color: #fff; }
+    @media (hover: hover) {
+      .pag-page:hover { background: var(--grad-violet-blue); border-color: var(--accent); color: #fff; }
+    }
+
+    /* ── BADGES ── */
+    .badges-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+    .badge.green   { background: rgba(0,214,143,0.15);   color: var(--green); }
+    .badge.red     { background: rgba(255,82,82,0.15);    color: var(--red); }
+    .badge.orange  { background: rgba(255,167,38,0.15);   color: var(--orange); }
+    .badge.blue    { background: rgba(92,141,255,0.15);   color: var(--blue); }
+    .badge.accent  { background: rgba(108,92,231,0.15);   color: var(--accent); }
+    .badge.muted   { background: rgba(122,125,144,0.15);  color: var(--muted); }
+    .badge.pink    { background: rgba(240,80,160,0.15);   color: var(--pink); }
+    .badge.cyan    { background: rgba(0,212,255,0.15);    color: var(--cyan); }
+    .badge.teal    { background: rgba(0,184,160,0.15);    color: var(--teal); }
+    .badge.indigo  { background: rgba(77,107,254,0.15);   color: var(--indigo); }
+    .badge.yellow  { background: rgba(245,208,32,0.15);   color: var(--yellow); }
+    .badge.lime    { background: rgba(130,224,0,0.15);    color: var(--lime); }
+    .badge.purple  { background: rgba(192,97,247,0.15);   color: var(--purple); }
+    .badge.coral   { background: rgba(255,107,107,0.15);  color: var(--coral); }
+
+    /* ── STATUS PULSE ── */
+    .status-pulse {
+      display: inline-block;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s ease infinite;
+    }
+
+    /* ── INPUTS ── */
+    .inputs-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .input-group { display: flex; flex-direction: column; gap: 6px; }
+    .input-label { font-size: 0.78rem; font-weight: 500; color: var(--muted); }
+    .input {
+      background: rgba(15,17,23,0.6);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      color: var(--text);
+      font-size: 0.88rem;
+      font-family: var(--font-ui);
+      transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+      outline: none;
+    }
+    .input::placeholder { color: var(--placeholder); }
+    .input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(108,92,231,0.2);
+    }
+    select.input {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%237a7d90' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 32px;
+    }
+
+    /* ── TABLE ── */
+    .table-wrap {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow-x: auto;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    th {
+      text-align: left;
+      padding: 10px 14px;
+      color: var(--muted);
+      font-weight: 500;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: middle; }
+    tr:last-child td { border: none; }
+    @media (hover: hover) {
+      tbody tr:hover td { background: rgba(108,92,231,0.05); }
+    }
+    td.mono { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
+
+    /* ── CHART ── */
+    .chart-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+    }
+    .chart-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      gap: 12px;
+    }
+    .chart-title-text { font-size: 0.85rem; color: var(--muted); font-weight: 500; }
+    .chart-filters { display: flex; gap: 6px; }
+    .chart-container { position: relative; height: 200px; }
+
+    /* ── LOGIN CARD ── */
+    .login-demo {
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      background: var(--grad-bg-login);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.15;
+      pointer-events: none;
+    }
+    .orb-violet { width: 300px; height: 300px; background: #6c5ce7; top: -80px; left: -80px; }
+    .orb-blue   { width: 200px; height: 200px; background: #5c8dff; bottom: -60px; right: -60px; }
+    .orb-green  { width: 150px; height: 150px; background: #00d68f; top: 30%; right: 8%; }
+    .login-card {
+      background: rgba(26, 29, 42, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(42, 45, 64, 0.6);
+      border-radius: var(--radius-2xl);
+      padding: 40px 36px 36px;
+      width: 360px;
+      max-width: 90vw;
+      box-shadow: var(--shadow-modal);
+      position: relative;
+      overflow: hidden;
+    }
+    .login-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--grad-login-bar);
+    }
+    .login-logo {
+      width: 42px; height: 42px;
+      background: var(--grad-violet-blue);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      margin-bottom: 18px;
+    }
+    .login-card h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 4px; }
+    .login-card p  { font-size: 0.82rem; color: var(--muted); margin-bottom: 24px; }
+    .login-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+    .login-field label { font-size: 0.78rem; font-weight: 500; color: var(--muted); }
+    .login-field .input { width: 100%; }
+    .btn-login {
+      width: 100%;
+      padding: 11px;
+      background: var(--grad-violet-blue);
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      transition: all var(--transition-normal);
+      margin-top: 6px;
+    }
+    .btn-login:hover { background: #7c6cf0; transform: translateY(-1px); }
+
+    /* ── TYPOGRAPHY ── */
+    .typo-grid { display: flex; flex-direction: column; gap: 14px; }
+    .typo-row { display: flex; align-items: baseline; gap: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+    .typo-row:last-child { border: none; }
+    .typo-meta { width: 180px; flex-shrink: 0; font-size: 0.72rem; color: var(--placeholder); font-family: var(--font-mono); }
+
+    /* ── LOADER ── */
+    .loader {
+      width: 22px; height: 22px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    .animations-row { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .anim-label { font-size: 0.78rem; color: var(--muted); }
+    .anim-item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+
+    /* ── FOCUS DEMO ── */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.45; transform: scale(0.82); }
+    }
+
+    .section:nth-child(1)  { animation-delay: 0.05s; }
+    .section:nth-child(2)  { animation-delay: 0.10s; }
+    .section:nth-child(3)  { animation-delay: 0.15s; }
+    .section:nth-child(4)  { animation-delay: 0.20s; }
+    .section:nth-child(5)  { animation-delay: 0.25s; }
+    .section:nth-child(6)  { animation-delay: 0.30s; }
+    .section:nth-child(7)  { animation-delay: 0.35s; }
+    .section:nth-child(8)  { animation-delay: 0.40s; }
+    .section:nth-child(9)  { animation-delay: 0.45s; }
+    .section:nth-child(10) { animation-delay: 0.50s; }
+
+    @media (max-width: 700px) {
+      .inputs-row { grid-template-columns: 1fr; }
+      .cards-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      body { padding: 20px 12px; }
+      .cards-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <header class="page-header">
+    <h1>🎨 Charte Graphique</h1>
+    <p>Preview des composants en action</p>
+  </header>
+
+  <!-- 1. PALETTE -->
+  <section class="section">
+    <div class="section-title">01 — Palette de couleurs</div>
+    <div class="palette-grid">
+      <!-- Fonds -->
+      <div class="swatch"><div class="swatch-color" style="background:#0f1117"></div><div class="swatch-info"><div class="swatch-name">--bg</div><div class="swatch-hex">#0f1117</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#1a1d2a"></div><div class="swatch-info"><div class="swatch-name">--card</div><div class="swatch-hex">#1a1d2a</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#212435"></div><div class="swatch-info"><div class="swatch-name">--card2</div><div class="swatch-hex">#212435</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#2a2d40"></div><div class="swatch-info"><div class="swatch-name">--border</div><div class="swatch-hex">#2a2d40</div></div></div>
+      <!-- Textes -->
+      <div class="swatch"><div class="swatch-color" style="background:#e0e2f0"></div><div class="swatch-info"><div class="swatch-name">--text</div><div class="swatch-hex">#e0e2f0</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#7a7d90"></div><div class="swatch-info"><div class="swatch-name">--muted</div><div class="swatch-hex">#7a7d90</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#5a5d70"></div><div class="swatch-info"><div class="swatch-name">--placeholder</div><div class="swatch-hex">#5a5d70</div></div></div>
+      <div class="palette-divider"></div>
+      <!-- Sémantiques -->
+      <div class="swatch"><div class="swatch-color" style="background:#6c5ce7"></div><div class="swatch-info"><div class="swatch-name">--accent</div><div class="swatch-hex">#6c5ce7</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#5c8dff"></div><div class="swatch-info"><div class="swatch-name">--blue</div><div class="swatch-hex">#5c8dff</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#00d68f"></div><div class="swatch-info"><div class="swatch-name">--green</div><div class="swatch-hex">#00d68f</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#ffa726"></div><div class="swatch-info"><div class="swatch-name">--orange</div><div class="swatch-hex">#ffa726</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#ff5252"></div><div class="swatch-info"><div class="swatch-name">--red</div><div class="swatch-hex">#ff5252</div></div></div>
+      <div class="palette-divider"></div>
+      <!-- Étendues -->
+      <div class="swatch"><div class="swatch-color" style="background:#f050a0"></div><div class="swatch-info"><div class="swatch-name">--pink</div><div class="swatch-hex">#f050a0</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#00d4ff"></div><div class="swatch-info"><div class="swatch-name">--cyan</div><div class="swatch-hex">#00d4ff</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#00b8a0"></div><div class="swatch-info"><div class="swatch-name">--teal</div><div class="swatch-hex">#00b8a0</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#4d6bfe"></div><div class="swatch-info"><div class="swatch-name">--indigo</div><div class="swatch-hex">#4d6bfe</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#f5d020"></div><div class="swatch-info"><div class="swatch-name">--yellow</div><div class="swatch-hex">#f5d020</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#82e000"></div><div class="swatch-info"><div class="swatch-name">--lime</div><div class="swatch-hex">#82e000</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#c061f7"></div><div class="swatch-info"><div class="swatch-name">--purple</div><div class="swatch-hex">#c061f7</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#ff6b6b"></div><div class="swatch-info"><div class="swatch-name">--coral</div><div class="swatch-hex">#ff6b6b</div></div></div>
+    </div>
+  </section>
+
+  <!-- 2. DÉGRADÉS -->
+  <section class="section">
+    <div class="section-title">02 — Dégradés</div>
+    <div class="grad-grid">
+      <div class="grad-swatch"><div class="grad-color" style="background:linear-gradient(90deg,#4d6bfe,#6c5ce7)"></div><div class="grad-info"><div class="grad-name">--grad-indigo-violet</div><div class="grad-desc">Indigo → Violet</div></div></div>
+      <div class="grad-swatch"><div class="grad-color" style="background:linear-gradient(90deg,#ffa726,#ff7043)"></div><div class="grad-info"><div class="grad-name">--grad-orange-red</div><div class="grad-desc">Orange → Rouge</div></div></div>
+      <div class="grad-swatch"><div class="grad-color" style="background:linear-gradient(90deg,#5c8dff,#42a5f5)"></div><div class="grad-info"><div class="grad-name">--grad-blue-sky</div><div class="grad-desc">Bleu → Bleu ciel</div></div></div>
+      <div class="grad-swatch"><div class="grad-color" style="background:linear-gradient(90deg,#00d68f,#00e676)"></div><div class="grad-info"><div class="grad-name">--grad-green</div><div class="grad-desc">Vert → Vert vif</div></div></div>
+      <div class="grad-swatch"><div class="grad-color" style="background:linear-gradient(90deg,#f050a0,#c061f7)"></div><div class="grad-info"><div class="grad-name">--grad-pink-purple</div><div class="grad-desc">Rose → Violet clair</div></div></div>
+      <div class="grad-swatch"><div class="grad-color" style="background:linear-gradient(90deg,#00d4ff,#00b8a0)"></div><div class="grad-info"><div class="grad-name">--grad-cyan-teal</div><div class="grad-desc">Cyan → Teal</div></div></div>
+      <div class="grad-swatch"><div class="grad-color" style="background:linear-gradient(90deg,#82e000,#00d68f)"></div><div class="grad-info"><div class="grad-name">--grad-lime-green</div><div class="grad-desc">Lime → Vert</div></div></div>
+      <div class="grad-swatch"><div class="grad-color" style="background:linear-gradient(90deg,#e040fb,#7c4dff)"></div><div class="grad-info"><div class="grad-name">--grad-purple-violet</div><div class="grad-desc">Violet clair → Indigo</div></div></div>
+      <div class="grad-swatch"><div class="grad-color" style="background:linear-gradient(90deg,#ff6b6b,#ffa726)"></div><div class="grad-info"><div class="grad-name">--grad-coral-orange</div><div class="grad-desc">Corail → Orange</div></div></div>
+      <div class="grad-swatch"><div class="grad-color" style="background:linear-gradient(90deg,#feca57,#ff9f43)"></div><div class="grad-info"><div class="grad-name">--grad-yellow-orange</div><div class="grad-desc">Jaune → Orange doux</div></div></div>
+      <div class="grad-swatch"><div class="grad-color" style="background:linear-gradient(135deg,#6c5ce7,#5c8dff)"></div><div class="grad-info"><div class="grad-name">--grad-violet-blue</div><div class="grad-desc">Violet → Bleu (global)</div></div></div>
+      <div class="grad-swatch"><div class="grad-color" style="background:linear-gradient(90deg,#6c5ce7,#00d68f,#5c8dff)"></div><div class="grad-info"><div class="grad-name">--grad-login-bar</div><div class="grad-desc">Tricolore login</div></div></div>
+    </div>
+  </section>
+
+  <!-- 3. CARTES -->
+  <section class="section">
+    <div class="section-title">03 — Cartes</div>
+    <div class="cards-grid">
+      <div class="card balance">
+        <div class="card-label">Carte accent</div>
+        <div class="card-value accent">1 284</div>
+        <div class="card-sub">Sous-titre de carte</div>
+      </div>
+      <div class="card consumption">
+        <div class="card-label">Carte orange</div>
+        <div class="card-value orange">6 740</div>
+        <div class="card-sub">Sous-titre de carte</div>
+      </div>
+      <div class="card snapshots">
+        <div class="card-label">Carte blue</div>
+        <div class="card-value blue">847</div>
+        <div class="card-sub">Sous-titre de carte</div>
+      </div>
+      <div class="card api-status">
+        <div class="card-label">Carte green</div>
+        <div class="card-value green">Actif</div>
+        <div class="card-sub">Sous-titre de carte</div>
+      </div>
+      <div class="card rhythm">
+        <div class="card-label">Carte purple</div>
+        <div class="card-value purple">2 048</div>
+        <div class="card-sub">Sous-titre de carte</div>
+      </div>
+      <div class="card live">
+        <div class="card-label">Carte cyan</div>
+        <div class="card-value cyan">En direct</div>
+        <div class="card-sub">Sous-titre de carte</div>
+      </div>
+      <div class="card highlight">
+        <div class="card-label">Carte pink</div>
+        <div class="card-value pink">v3.1</div>
+        <div class="card-sub">Sous-titre de carte</div>
+      </div>
+      <div class="card performance">
+        <div class="card-label">Carte lime</div>
+        <div class="card-value lime">98.7%</div>
+        <div class="card-sub">Sous-titre de carte</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. TUILES STAT -->
+  <section class="section">
+    <div class="section-title">04 — Tuiles statistiques</div>
+    <div class="stat-grid">
+      <div class="stat-tile">
+        <div class="stat-label">Tuile 1</div>
+        <div class="stat-value">4 830</div>
+        <div class="stat-sub">↑ +320 vs hier</div>
+      </div>
+      <div class="stat-tile">
+        <div class="stat-label">Tuile 2</div>
+        <div class="stat-value">↗ +8%</div>
+        <div class="stat-sub">7 derniers jours</div>
+      </div>
+      <div class="stat-tile">
+        <div class="stat-label">Tuile 3</div>
+        <div class="stat-value">1 247</div>
+        <div class="stat-sub">Valeur moyenne</div>
+      </div>
+      <div class="stat-tile">
+        <div class="stat-label">Tuile 4</div>
+        <div class="stat-value">38 910</div>
+        <div class="stat-sub">Total cumulé</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. GRAPHIQUE -->
+  <section class="section">
+    <div class="section-title">05 — Graphique (Chart.js)</div>
+    <div class="chart-section">
+      <div class="chart-header">
+        <span class="chart-title-text">📈 Évolution sur 7 jours</span>
+        <div class="chart-filters">
+          <button class="filter-btn">1h</button>
+          <button class="filter-btn">1j</button>
+          <button class="filter-btn active">7j</button>
+          <button class="filter-btn">30j</button>
+        </div>
+      </div>
+      <div class="chart-container">
+        <canvas id="mainChart"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. BOUTONS -->
+  <section class="section">
+    <div class="section-title">06 — Boutons</div>
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div class="btn-row">
+        <button class="btn-primary">✦ Action principale</button>
+        <button class="btn">🔄 Rafraîchir</button>
+        <button class="btn">Exporter</button>
+        <button class="btn" disabled>Désactivé</button>
+      </div>
+      <div class="btn-row">
+        <button class="filter-btn active">7j</button>
+        <button class="filter-btn">30j</button>
+        <button class="filter-btn">90j</button>
+        <button class="filter-btn">1an</button>
+      </div>
+      <div class="btn-row">
+        <button class="pag-page">◀</button>
+        <button class="pag-page">1</button>
+        <button class="pag-page active">2</button>
+        <button class="pag-page">3</button>
+        <button class="pag-page">…</button>
+        <button class="pag-page">8</button>
+        <button class="pag-page">▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. BADGES -->
+  <section class="section">
+    <div class="section-title">07 — Badges</div>
+    <div class="badges-row">
+      <span class="badge green"><span class="status-pulse"></span> Actif</span>
+      <span class="badge red">⚠️ Erreur</span>
+      <span class="badge orange">Attention</span>
+      <span class="badge blue">Info</span>
+      <span class="badge accent">Accent</span>
+      <span class="badge muted">Inactif</span>
+      <span class="badge pink">✨ Nouveau</span>
+      <span class="badge cyan">⚡ Live</span>
+      <span class="badge teal">Tag</span>
+      <span class="badge indigo">Indigo</span>
+      <span class="badge yellow">⚠ Avert.</span>
+      <span class="badge lime">🏆 Score</span>
+      <span class="badge purple">Catégorie</span>
+      <span class="badge coral">Alerte douce</span>
+    </div>
+  </section>
+
+  <!-- 8. INPUTS -->
+  <section class="section">
+    <div class="section-title">08 — Formulaires & Inputs</div>
+    <div class="inputs-row">
+      <div class="input-group">
+        <label class="input-label">Champ texte</label>
+        <input class="input" type="text" placeholder="Valeur libre…">
+      </div>
+      <div class="input-group">
+        <label class="input-label">Liste déroulante</label>
+        <select class="input">
+          <option>Option A</option>
+          <option>Option B</option>
+          <option>Option C</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label class="input-label">Date</label>
+        <input class="input" type="date">
+      </div>
+      <div class="input-group">
+        <label class="input-label">Recherche</label>
+        <input class="input" type="search" placeholder="Filtrer les éléments…">
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. TABLEAU -->
+  <section class="section">
+    <div class="section-title">09 — Tableau</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Horodatage</th>
+            <th>Catégorie</th>
+            <th>Référence</th>
+            <th>Valeur</th>
+            <th>Statut</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="mono">2025-01-15 14:32</td>
+            <td>Catégorie A</td>
+            <td>REF-00142</td>
+            <td>8 304</td>
+            <td><span class="badge green">✓ OK</span></td>
+          </tr>
+          <tr>
+            <td class="mono">2025-01-15 13:18</td>
+            <td>Catégorie B</td>
+            <td>REF-00141</td>
+            <td>21 670</td>
+            <td><span class="badge green">✓ OK</span></td>
+          </tr>
+          <tr>
+            <td class="mono">2025-01-15 11:05</td>
+            <td>Catégorie A</td>
+            <td>REF-00140</td>
+            <td>1 092</td>
+            <td><span class="badge orange">En attente</span></td>
+          </tr>
+          <tr>
+            <td class="mono">2025-01-15 09:47</td>
+            <td>Catégorie C</td>
+            <td>REF-00139</td>
+            <td>—</td>
+            <td><span class="badge red">Erreur</span></td>
+          </tr>
+          <tr>
+            <td class="mono">2025-01-14 22:11</td>
+            <td>Catégorie B</td>
+            <td>REF-00138</td>
+            <td>14 580</td>
+            <td><span class="badge green">✓ OK</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 10. ANIMATIONS -->
+  <section class="section">
+    <div class="section-title">10 — Animations</div>
+    <div class="animations-row">
+      <div class="anim-item">
+        <div class="loader"></div>
+        <span class="anim-label">Loader</span>
+      </div>
+      <div class="anim-item">
+        <span class="status-pulse"></span>
+        <span class="anim-label">Pulse</span>
+      </div>
+      <div class="anim-item" style="display:flex;flex-direction:column;align-items:flex-start;gap:6px;">
+        <span class="anim-label" style="margin-bottom:4px;">fadeUp au chargement</span>
+        <span style="font-size:0.78rem;color:var(--placeholder);">Toutes les sections apparaissent avec un décalage de 0.05s</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. LOGIN CARD -->
+  <section class="section">
+    <div class="section-title">11 — Page de connexion (Glassmorphism)</div>
+    <div class="login-demo">
+      <div class="orb orb-violet"></div>
+      <div class="orb orb-blue"></div>
+      <div class="orb orb-green"></div>
+      <div class="login-card">
+        <div class="login-logo">✦</div>
+        <h2>Connexion</h2>
+        <p>Entrez vos identifiants pour accéder à l'application</p>
+        <div class="login-field">
+          <label>Identifiant</label>
+          <input class="input" type="text" placeholder="nom@exemple.com">
+        </div>
+        <div class="login-field">
+          <label>Mot de passe</label>
+          <input class="input" type="password" placeholder="••••••••">
+        </div>
+        <button class="btn-login">Se connecter →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. TYPOGRAPHIE -->
+  <section class="section">
+    <div class="section-title">12 — Typographie</div>
+    <div class="typo-grid">
+      <div class="typo-row">
+        <div class="typo-meta">h1 · 2rem · 700</div>
+        <h1 style="font-size:2rem;font-weight:700;background:var(--grad-violet-blue);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Titre principal</h1>
+      </div>
+      <div class="typo-row">
+        <div class="typo-meta">h2 · 1rem · 600</div>
+        <span style="font-size:1rem;font-weight:600;">Titre de section</span>
+      </div>
+      <div class="typo-row">
+        <div class="typo-meta">label · 0.75rem · uppercase</div>
+        <span style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);">Label de carte</span>
+      </div>
+      <div class="typo-row">
+        <div class="typo-meta">valeur · 1.8rem · 700</div>
+        <span style="font-size:1.8rem;font-weight:700;background:var(--grad-indigo-violet);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">38 472</span>
+      </div>
+      <div class="typo-row">
+        <div class="typo-meta">body · 0.85rem</div>
+        <span style="font-size:0.85rem;color:var(--text);">Texte courant dans les tableaux et descriptions.</span>
+      </div>
+      <div class="typo-row">
+        <div class="typo-meta">muted · 0.8rem</div>
+        <span style="font-size:0.8rem;color:var(--muted);">Sous-valeur · Tendance · Label secondaire</span>
+      </div>
+      <div class="typo-row">
+        <div class="typo-meta">mono · 0.8rem</div>
+        <span style="font-size:0.8rem;font-family:var(--font-mono);color:var(--muted);">REF-00142 · 2025-01-15T14:32:00Z</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  // ── FILTRE ACTIF ──
+  document.querySelectorAll('.chart-filters').forEach(group => {
+    group.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        group.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  });
+
+  // ── CHART.JS ──
+  const ctx = document.getElementById('mainChart').getContext('2d');
+
+  const labels = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
+  const data1  = [2.1, 3.4, 2.8, 4.1, 3.9, 2.2, 3.2];
+  const data2  = [1.2, 1.8, 1.5, 2.3, 2.1, 1.4, 1.9];
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'Courbe 1',
+          data: data1,
+          borderColor: '#6c5ce7',
+          backgroundColor: 'rgba(108,92,231,0.08)',
+          fill: true,
+          tension: 0.3,
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          pointBackgroundColor: '#6c5ce7',
+          borderWidth: 2,
+        },
+        {
+          label: 'Courbe 2',
+          data: data2,
+          borderColor: '#00d4ff',
+          backgroundColor: 'rgba(0,212,255,0.06)',
+          fill: true,
+          tension: 0.3,
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          pointBackgroundColor: '#00d4ff',
+          borderWidth: 2,
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: {
+          display: true,
+          labels: { color: '#7a7d90', font: { size: 11, family: 'Inter' }, boxWidth: 12, padding: 16 }
+        },
+        tooltip: {
+          backgroundColor: '#1a1d2a',
+          borderColor: '#2a2d40',
+          borderWidth: 1,
+          titleColor: '#e0e2f0',
+          bodyColor: '#7a7d90',
+          padding: 10,
+          cornerRadius: 8,
+          callbacks: { label: ctx => ` ${ctx.parsed.y.toFixed(1)}` }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: '#2a2d40' },
+          ticks: { color: '#7a7d90', font: { size: 11 } }
+        },
+        y: {
+          grid: { color: '#2a2d40' },
+          ticks: { color: '#7a7d90', font: { size: 11 }, callback: v => `${v}` }
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>
