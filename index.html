@@ -74,7 +74,6 @@
     .page-header {
       margin-bottom: 56px;
       padding-bottom: 32px;
-      border-bottom: 1px solid var(--border);
     }
     .page-header h1 {
       font-size: 2rem;
@@ -90,6 +89,14 @@
       color: var(--muted);
       font-size: 0.9rem;
       animation: fadeUp 0.5s ease 0.1s both;
+    }
+    .doc-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .doc-link:hover {
+      text-decoration: underline;
     }
 
     /* ── SECTIONS ── */
@@ -567,7 +574,7 @@
   <!-- HEADER -->
   <header class="page-header">
     <h1>🎨 Charte Graphique</h1>
-    <p>Preview des composants en action</p>
+    <p>Preview des composants en action — <a href="design_system.md" class="doc-link">📄 Documentation complète</a></p>
   </header>
 
   <!-- 1. PALETTE -->
