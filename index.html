@@ -1672,9 +1672,26 @@
       document.querySelectorAll('#theme-switch .segment').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       root.dataset.theme = btn.dataset.themeValue;
+      updatePaletteHexes();
       restyleCharts();
     });
   });
+
+  /* ── Palette hex (dark/light synced) ── */
+  function updatePaletteHexes() {
+    document.querySelectorAll('.swatch').forEach(swatch => {
+      const nameEl = swatch.querySelector('.swatch-name');
+      const hexEl  = swatch.querySelector('.swatch-hex');
+      if (!nameEl || !hexEl) return;
+      const varName = nameEl.textContent.trim();
+      // Récupère la valeur calculée du token CSS
+      const val = getComputedStyle(root).getPropertyValue(varName).trim();
+      if (val) hexEl.textContent = val;
+    });
+  }
+
+  // Initialisation au load
+  updatePaletteHexes();
 
   /* ── DENSITÉ ── */
   document.querySelectorAll('#density-switch .segment').forEach(btn => {
