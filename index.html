@@ -564,6 +564,23 @@
     }
     .segment.active { background: var(--card); color: var(--text); box-shadow: var(--elevation-1); font-weight: 500; }
 
+    .filter-btn {
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-family: var(--font-ui);
+      padding: 5px 12px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      line-height: 1.4;
+    }
+    @media (hover: hover) {
+      .filter-btn:hover { background: var(--grad-violet-blue); border-color: var(--accent); color: #fff; }
+    }
+    .filter-btn.active { background: var(--grad-violet-blue); border-color: var(--accent); color: #fff; }
+
     /* ════════ 08 — DROPDOWN ════════ */
     .dropdown { position: relative; display: inline-block; }
     .dropdown-menu {
@@ -1058,6 +1075,10 @@
       .sidebar { width: 160px; }
       .inputs-row { grid-template-columns: 1fr; }
       .cards-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 700px) {
+      .header-controls { flex-wrap: nowrap; gap: 6px; }
+      .header-controls .segment { font-size: 0.7rem; padding: 4px 8px; }
     }
     @media (max-width: 480px) {
       body { padding: 20px 12px; }
