@@ -176,9 +176,9 @@
       background: var(--border);
     }
     .toc-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
     }
     .toc-column {
       display: flex;
@@ -198,20 +198,7 @@
       color: var(--accent);
       background: rgba(108, 92, 231, 0.08);
     }
-    .toc-subheader {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 4px;
-      padding: 4px 8px;
-    }
-    .toc-sub {
-      padding-left: 20px;
-      font-size: 0.8rem;
-    }
-    @media (max-width: 700px) {
-      .toc-grid { grid-template-columns: 1fr; gap: 16px; }
-    }
+
 
     /* ══ DOC SECTION LINK ══ */
     .doc-section {
@@ -1114,25 +1101,7 @@
         <a href="#section-page-de-connexion" class="toc-link">07. Page de connexion</a>
         <a href="#section-boutons" class="toc-link">08. Boutons</a>
         <a href="#section-typographie" class="toc-link">09. Typographie</a>
-      </div>
-      <div class="toc-column toc-advanced">
-        <div class="toc-subheader">10. Composants avancés</div>
-        <a href="#section-systeme-delevation" class="toc-link toc-sub">a) Système d'élévation</a>
-        <a href="#section-motion-design" class="toc-link toc-sub">b) Motion design</a>
-        <a href="#section-densite-daffichage" class="toc-link toc-sub">c) Densité d'affichage</a>
-        <a href="#section-modales-overlays" class="toc-link toc-sub">d) Modales &amp; Overlays</a>
-        <a href="#section-toasts-notifications" class="toc-link toc-sub">e) Toasts &amp; Notifications</a>
-        <a href="#section-tooltips-popovers" class="toc-link toc-sub">f) Tooltips &amp; Popovers</a>
-        <a href="#section-tabs-segmented-controls" class="toc-link toc-sub">g) Tabs &amp; Segmented controls</a>
-        <a href="#section-dropdowns-menus" class="toc-link toc-sub">h) Dropdowns &amp; Menus</a>
-        <a href="#section-toggles-checkboxes-radios" class="toc-link toc-sub">i) Toggles, Checkboxes &amp; Radios</a>
-        <a href="#section-progress-sliders" class="toc-link toc-sub">j) Progress &amp; Sliders</a>
-        <a href="#section-skeleton-loaders" class="toc-link toc-sub">k) Skeleton Loaders</a>
-        <a href="#section-avatars" class="toc-link toc-sub">l) Avatars</a>
-        <a href="#section-navigation-breadcrumbs" class="toc-link toc-sub">m) Navigation &amp; Breadcrumbs</a>
-        <a href="#section-steppers-timeline" class="toc-link toc-sub">n) Steppers &amp; Timeline</a>
-        <a href="#section-empty-error-states" class="toc-link toc-sub">o) Empty &amp; Error states</a>
-        <a href="#section-data-viz-avancee" class="toc-link toc-sub">p) Data-viz avancée</a>
+        <a href="#section-composants-avances" class="toc-link">10. Composants avancés</a>
       </div>
     </div>
   </div>
